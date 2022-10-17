@@ -12,5 +12,5 @@ srcDir        = "src"
 requires "nim >= 1.7.1"
 
 task gendoc, "generate docs":
-  exec "nim doc ./src/nillean.nim"
-  exec "cp ./src/htmldocs/nillean.html ./src/htmldocs/geekrelief.github.io/nillean/index.html"
+  exec "nim doc ./src/nilean.nim"
+  exec "cp ./src/htmldocs/nilean.html ./src/htmldocs/geekrelief.github.io/nilean/index.html"

@@ -2,7 +2,7 @@
 ## :License: MIT
 ## :Version: 0.1.0
 ##
-## `Source <https://github.com/geekrelief/nillean>`_
+## `Source <https://github.com/geekrelief/nilean>`_
 ##
 ## Implements operators ``!``, checks for falsiness, and ``?``, truthiness, on various types, including dot expression chains.
 ##
