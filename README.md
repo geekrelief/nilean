@@ -1,8 +1,8 @@
-# nillean
+# nilean
 Nim truthy operators that also work on nilable chains of dot expressions.
 
 ### Documentation
-https://geekrelief.github.io/nillean
+https://geekrelief.github.io/nilean
 
 
 ---
