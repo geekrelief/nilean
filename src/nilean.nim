@@ -1,6 +1,6 @@
 ## :Author: Don-Duong Quach
 ## :License: MIT
-## :Version: 0.2.0
+## :Version: 0.2.1
 ##
 ## `Source <https://github.com/geekrelief/nilean>`_
 ##
@@ -24,7 +24,8 @@ runnableExamples:
     R = ref object
       val: int
 
-  var a = cast[ptr A](alloc(sizeof(A)))
+  var va = A()
+  var a = va.addr
   var b = cast[ptr B](alloc(sizeof(B)))
   b.foo = 100f
 
@@ -42,7 +43,6 @@ runnableExamples:
   c.bar = true
   a.s = @[c]
   doAssert ?a.s
-  doAssert ?a.s[0]
   doAssert ?a.s[0]
 
   var p:proc():int

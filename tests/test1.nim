@@ -93,7 +93,9 @@ test "Nilable":
   check ?a.pp
 
 test "It":
-  var a = cast[ptr A](alloc(sizeof(A)))
+  var va: A
+  var a: ptr A
+  a = va.addr
 
   ifIt a:
     it.b = cast[ptr B](alloc(sizeof(B)))
