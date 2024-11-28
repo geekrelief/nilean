@@ -1,7 +1,7 @@
 import unittest
 
-import nillean
-import std/[math, tables]
+import nilean
+import std/[math, tables, sugar]
 test "SomeInteger":
   check !0 == true
   check ?0 == false
@@ -42,19 +42,18 @@ type
     b: ptr B
     s: seq[ptr C]
     p: proc():int
-    r: R
     cs: cstring
     pp: pointer
   B = object
     foo: float
   C = object
     bar: bool
-    r: R
-  R = ref object
+  R = ref object # with arc, shouldn't alloc and mix ref object, just use pointers instead
     val: int
 
 test "Nilable":
-  var a = cast[ptr A](alloc(sizeof(A)))
+  var va = A()
+  var a = va.addr
   var b = cast[ptr B](alloc(sizeof(B)))
   b.foo = 100f
 
@@ -67,10 +66,9 @@ test "Nilable":
 
   var c = cast[ptr C](alloc(sizeof(C)))
   c.bar = true
+
   a.s = @[c]
   check ?a.s
-  check ?a.s[0]
-  check ?a.s[0]
 
   var p:proc():int
   check !p
@@ -83,17 +81,21 @@ test "Nilable":
 
   var r:R
   check !r
-  check !a.r
+  r = R()
+  check ?r
   
-  check !a.s[0].r
-  c.r = R()
-
-  check ?a.s[0].r
-
   check !a.cs
   a.cs = cstring"Hello"
   check ?a.cs
 
   check !a.pp
-  a.pp = cast[pointer](a.s[0].addr)
+  a.pp = cast[pointer](a.b)
   check ?a.pp
+
+test "It":
+  var a = cast[ptr A](alloc(sizeof(A)))
+
+  ifIt a:
+    it.b = cast[ptr B](alloc(sizeof(B)))
+
+  check ?a.b

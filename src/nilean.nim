@@ -30,7 +30,10 @@ runnableExamples:
 
   doAssert ?a
   doAssert !a.b
-  a.b = b
+
+  ifIt a:
+    it.b = b
+
   doAssert ?a.b
 
   doAssert !a.s
@@ -86,6 +89,11 @@ template `!`*(x: string): untyped =
 
 template `!`*[T](x: seq[T]): untyped =
   x.len == 0
+
+template ifIt*(x, body): untyped =
+  let it {.inject.} = x
+  if ?x:
+    body
 
 proc parseParts(x: NimNode): seq[NimNode]
 
